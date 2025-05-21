@@ -32,8 +32,7 @@ jobs:
     - name: Run pytest
       run: |
         cd app
-        # Adding verbose output to see more details about test execution
-        python -m pytest tests/ -v
+        python -m pytest -v
 
     - name: Test app startup
       run: |
