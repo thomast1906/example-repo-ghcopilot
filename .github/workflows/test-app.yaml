@@ -24,12 +24,16 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
+        # Install explicitly mentioned packages first
+        python -m pip install Flask==2.0.0 Werkzeug==2.0.0 pytest==7.4.0
+        # Then install any additional packages from requirements.txt
         if [ -f app/requirements.txt ]; then pip install -r app/requirements.txt; fi
 
     - name: Run pytest
       run: |
         cd app
-        python -m pytest tests/
+        # Adding verbose output to see more details about test execution
+        python -m pytest tests/ -v
 
     - name: Test app startup
       run: |
