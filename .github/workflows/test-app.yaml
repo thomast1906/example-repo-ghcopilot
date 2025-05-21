@@ -26,6 +26,11 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f app/requirements.txt ]; then pip install -r app/requirements.txt; fi
 
+    - name: Run pytest
+      run: |
+        cd app
+        python -m pytest tests/
+
     - name: Test app startup
       run: |
         cd app
