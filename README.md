@@ -48,6 +48,10 @@ example-repo-ghcopilot/
 │   │   └── index.html       # HTML template for the web application
 │   ├── app.py               # Main Flask application code
 │   └── requirements.txt     # Python dependencies
+├── tests/
+│   ├── README.md            # Information about the tests
+│   └── test_app.py          # Tests for the Flask application
+├── pytest.ini               # Configuration for pytest
 └── README.md                # This file
 ```
 
@@ -56,16 +60,41 @@ example-repo-ghcopilot/
 The application uses the following Python packages:
 - Flask 2.0.0 - Web framework
 - Werkzeug 2.0.0 - WSGI utility library
+- pytest 7.4.0 - Testing framework
 
 All dependencies can be installed using the requirements.txt file.
 
 ## Testing
 
-The repository includes a GitHub Actions workflow that tests if the application starts correctly and responds to HTTP requests. To run tests locally:
+The repository includes automated tests using pytest and a GitHub Actions workflow that verifies the application works correctly. The tests check:
 
-1. Start the application as described in the "Running the Application" section
-2. Use curl or a web browser to verify the application is responding:
+1. Application initialization
+2. Home page returns correct status code (200)
+3. Home page returns correct HTML content
+4. Non-existent pages return 404 status code
+
+To run tests locally:
+
+1. Install the required dependencies:
    ```bash
+   pip install -r app/requirements.txt
+   ```
+
+2. Run the tests:
+   ```bash
+   pytest
+   ```
+   
+   For more verbose output:
+   ```bash
+   pytest -v
+   ```
+
+3. You can also manually test the application by starting it and using curl:
+   ```bash
+   cd app
+   python app.py
+   # In another terminal
    curl http://localhost:5000/
    ```
 
